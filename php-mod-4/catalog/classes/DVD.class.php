@@ -18,42 +18,42 @@ class DVD{
 	public function setBand($band){
 		$this->_band = $band;
 	}
-	/* Äîáàâëåíèå òðåêà â êîëëåêöèþ äëÿ ñîñòàâëåíèÿ àíòîëîãèè èñïîëíèòåëÿ */
+	/* Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ñ‚Ñ€ÐµÐºÐ° Ð² ÐºÐ¾Ð»Ð»ÐµÐºÑ†Ð¸ÑŽ Ð´Ð»Ñ ÑÐ¾ÑÑ‚Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð°Ð½Ñ‚Ð¾Ð»Ð¾Ð³Ð¸Ð¸ Ð¸ÑÐ¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»Ñ */
 	public function addTrack($track){
 		$this->_tracks[] = $track;
 	}
-	/* Ïîëüçîâàòåëü äåëàåò çàêàç */
+	/* ÐŸÐ¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ð´ÐµÐ»Ð°ÐµÑ‚ Ð·Ð°ÐºÐ°Ð· */
 	public function buy(){
 		$this->_db->updateQuantity($this->_id, -1);
-		// Äðóãèå äåéñòâèÿ
+		// Ð”Ñ€ÑƒÐ³Ð¸Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ
 	}
-	/* Ïîêàçûâàåì ñïèñîê Èñïîëíèòåëü - Àëüáîì */
+	/* ÐŸÐ¾ÐºÐ°Ð·Ñ‹Ð²Ð°ÐµÐ¼ ÑÐ¿Ð¸ÑÐ¾Ðº Ð˜ÑÐ¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒ - ÐÐ»ÑŒÐ±Ð¾Ð¼ */
 	public function showCatalog(){
 		$result = $this->_db->selectItems();
 		if(is_array($result))
 			return $result;
 		else
-			return 'Íå ñðîñëîñü';
+			return 'ÐÐµ ÑÑ€Ð¾ÑÐ»Ð¾ÑÑŒ';
 	}
-	/* 	Ïîêàçûâàåì ñïèñîê âñåõ òðåêîâ âûáðàííîãî èñïîëíèòåëÿ 
-	*	ñãðóïïèðîâàííûõ ïî àëüáîìàì
+	/* 	ÐŸÐ¾ÐºÐ°Ð·Ñ‹Ð²Ð°ÐµÐ¼ ÑÐ¿Ð¸ÑÐ¾Ðº Ð²ÑÐµÑ… Ñ‚Ñ€ÐµÐºÐ¾Ð² Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ð³Ð¾ Ð¸ÑÐ¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»Ñ 
+	*	ÑÐ³Ñ€ÑƒÐ¿Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ñ… Ð¿Ð¾ Ð°Ð»ÑŒÐ±Ð¾Ð¼Ð°Ð¼
 	*/
 	public function showBand($band){
 		$result = $this->_db->selectItemsByBand($band);
 		if(is_array($result))
 			return $result;
 		else
-			return 'Íå ñðîñëîñü';
+			return 'ÐÐµ ÑÑ€Ð¾ÑÐ»Ð¾ÑÑŒ';
 	}
-	/* Ïîêàçûâàåì âûáðàííûé àëüáîì ñî ñïèñêîì òðåêîâ */
+	/* ÐŸÐ¾ÐºÐ°Ð·Ñ‹Ð²Ð°ÐµÐ¼ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ñ‹Ð¹ Ð°Ð»ÑŒÐ±Ð¾Ð¼ ÑÐ¾ ÑÐ¿Ð¸ÑÐºÐ¾Ð¼ Ñ‚Ñ€ÐµÐºÐ¾Ð² */
 	public function showAlbum($id){
 		$result = $this->_db->selectItemsByTitle($id);
 		if(is_array($result))
 			return $result;
 		else
-			return 'Íå ñðîñëîñü';
+			return 'ÐÐµ ÑÑ€Ð¾ÑÐ»Ð¾ÑÑŒ';
 	}
-	/* Ñîõðàíåíèå èíôîðìàöèè îá àëüáîìå â ôîðìàòå XML */
+	/* Ð¡Ð¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ðµ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¸ Ð¾Ð± Ð°Ð»ÑŒÐ±Ð¾Ð¼Ðµ Ð² Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ðµ XML */
 	public function getXML($id){
 		$doc = new DomDocument('1.0', 'utf-8');
 		$doc->formatOutput = true;
@@ -76,7 +76,7 @@ class DVD{
 		file_put_contents('output/'.$file_name, $doc->saveXML());
 	}
 	
-	/* Çàïèñûâàåì êîëëåêöèþ òðåêîâ â ôàéë. Ïðîñòî äëÿ äåìîíñòðàöèè */
+	/* Ð—Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÐ¼ ÐºÐ¾Ð»Ð»ÐµÐºÑ†Ð¸ÑŽ Ñ‚Ñ€ÐµÐºÐ¾Ð² Ð² Ñ„Ð°Ð¹Ð». ÐŸÑ€Ð¾ÑÑ‚Ð¾ Ð´Ð»Ñ Ð´ÐµÐ¼Ð¾Ð½ÑÑ‚Ñ€Ð°Ñ†Ð¸Ð¸ */
 	function __destruct(){
 		if($this->_tracks){
 			file_put_contents(__DIR__.'\tracks.log', time().'|'.serialize($this->_tracks)."\n", FILE_APPEND);

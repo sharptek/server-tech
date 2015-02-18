@@ -8,14 +8,14 @@ class DB{
 	function __destruct(){
 		unset($this->_db);
 	}
-	/* Перегоняем объект в массив для удобства использования */
+	/* РџРµСЂРµРіРѕРЅСЏРµРј РѕР±СЉРµРєС‚ РІ РјР°СЃСЃРёРІ РґР»СЏ СѓРґРѕР±СЃС‚РІР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ */
 	protected function db2Arr($data){
 		$arr = array();
 		while($row = $data->fetchArray(SQLITE3_ASSOC))
 			$arr[] = $row;
 		return $arr;	
 	}
-	/* Выборка каталога */
+	/* Р’С‹Р±РѕСЂРєР° РєР°С‚Р°Р»РѕРіР° */
 	function selectItems(){
 		try{
 			$sql = "SELECT id, band, title, quantity FROM catalog";
@@ -27,7 +27,7 @@ class DB{
 			return false;
 		}	
 	}
-	/* Выборка треков альбома */
+	/* Р’С‹Р±РѕСЂРєР° С‚СЂРµРєРѕРІ Р°Р»СЊР±РѕРјР° */
 	function selectItemsByTitle($id){
 		try{
 			$sql = "SELECT tracks.cid as id, tracks.title as title
@@ -41,7 +41,7 @@ class DB{
 			return false;
 		}	
 	}
-	/* Выборка всех треков по альбомам исполнителя */
+	/* Р’С‹Р±РѕСЂРєР° РІСЃРµС… С‚СЂРµРєРѕРІ РїРѕ Р°Р»СЊР±РѕРјР°Рј РёСЃРїРѕР»РЅРёС‚РµР»СЏ */
 	function selectItemsByBand($band){
 		try{
 			$sql = "SELECT tracks.id as id, tracks.title as track, catalog.title as title 
@@ -55,7 +55,7 @@ class DB{
 			return false;
 		}	
 	}
-	/* Изменение количества альбомов */
+	/* РР·РјРµРЅРµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° Р°Р»СЊР±РѕРјРѕРІ */
 	function updateQuantity($id, $number){
 		$sql = "UPDATE catalog SET quantity = quantity + " . (int)$number;
 		$sql .= " WHERE id = ".abs((int)$id);

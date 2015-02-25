@@ -57,10 +57,10 @@ class AuthAccounts extends Authentication{
 		if (empty($user) || empty($password)) {
 			return false;
 		} else {
-			// Проверяем через два метода валидации. Должны работать оба.
-			// Статический метод класса User для валидации аккаунта
+			// РџСЂРѕРІРµСЂСЏРµРј С‡РµСЂРµР· РґРІР° РјРµС‚РѕРґР° РІР°Р»РёРґР°С†РёРё. Р”РѕР»Р¶РЅС‹ СЂР°Р±РѕС‚Р°С‚СЊ РѕР±Р°.
+			// РЎС‚Р°С‚РёС‡РµСЃРєРёР№ РјРµС‚РѕРґ РєР»Р°СЃСЃР° User РґР»СЏ РІР°Р»РёРґР°С†РёРё Р°РєРєР°СѓРЅС‚Р°
 			$firstValidation = Users::validate($user, $password);
-			// 'волшебный' метод класса User validate<username>($password)
+			// 'РІРѕР»С€РµР±РЅС‹Р№' РјРµС‚РѕРґ РєР»Р°СЃСЃР° User validate<username>($password)
 			$userLoginFunction = 'validate' . $user;
 			$secondValidation = $this->users->$userLoginFunction($password);
 			return ($firstValidation && $secondValidation);

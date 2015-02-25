@@ -6,7 +6,8 @@
 	//INSERT
 	$name = $db->quote('Mike');
 	$email = $db->quote('mike@hotmail.com');
-	$count = $db->exec("INSERT INTO user(name, email) VALUES ('$name', '$email')");
+//    echo $name." ".$email;
+	$count = $db->exec("INSERT INTO user(name, email) VALUES ($name, $email)");
 
 	echo $count;
 
